@@ -4,7 +4,7 @@
 
 namespace Pathfinding
 {
-	class Node;
+	struct Point;
 
 	class IAlgorithm
 	{
@@ -12,6 +12,6 @@ namespace Pathfinding
 		IAlgorithm() = default;
 		virtual ~IAlgorithm() = default;
 
-		virtual std::shared_ptr<std::list<std::shared_ptr<Node>>> FindPathes() = 0;
+		virtual std::shared_ptr<std::list<std::shared_ptr<Point>>> FindPath() = 0;
 	};
 }
