@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IAlgorithm.h"
-#include "Point.h"
+#include "Node.h"
 
 namespace Pathfinding
 {
@@ -13,11 +13,11 @@ namespace Pathfinding
 		AStar() = default;
 		virtual ~AStar() = default;
 
-		std::shared_ptr<std::list<std::shared_ptr<Point>>> FindPath() override;
+		std::shared_ptr<std::list<std::shared_ptr<Node>>> FindPath() override;
 		void SetTopology(std::shared_ptr<Topology> topology) { _topology = std::move(topology); }
 
 	private:
 		std::shared_ptr<Topology> _topology;
-		std::unique_ptr<Point> _currentPoint;
+		std::unique_ptr<Node> _currentPoint;
 	};
 }

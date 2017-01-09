@@ -2,7 +2,7 @@
 #include "AStar.h"
 #include "PathNotFindException.h"
 #include "Topology.h"
-#include "Point.h"
+#include "Node.h"
 
 namespace Pathfinding
 {
@@ -21,8 +21,8 @@ namespace Pathfinding
 	TEST_F(AStarTestFixture, ShouldFindSimplePath)
 	{
 		auto topology = std::make_shared<Topology>();
-		topology->SetStartPoint(std::make_shared<Point>(0, 0));
-		topology->SetEndPoint(std::make_shared<Point>(1, 0));
+		topology->SetStartPoint(std::make_shared<Node>(0, 0));
+		topology->SetEndPoint(std::make_shared<Node>(1, 0));
 
 		AStar astar;
 		astar.SetTopology(topology);

@@ -4,14 +4,14 @@
 
 using namespace Pathfinding;
 
-std::shared_ptr<std::list<std::shared_ptr<Point>>> AStar::FindPath()
+std::shared_ptr<std::list<std::shared_ptr<Node>>> AStar::FindPath()
 {
 	if (!_topology || !_topology->GetStartPoint() || !_topology->GetEndPoint())
 	{
 		throw PathNotFindException();
 	}
 
-	auto path = std::make_shared<std::list<std::shared_ptr<Point>>>();
+	auto path = std::make_shared<std::list<std::shared_ptr<Node>>>();
 	path->push_back(_topology->GetStartPoint());
 	path->push_back(_topology->GetEndPoint());
 	return path;
