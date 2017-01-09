@@ -1,0 +1,10 @@
+*.db
+*.opendb
+*.suo
+*.log
+AStar/Debug
+*.user
+AStarTest/Debug
+Debug
+ipch
+packages
