@@ -18,7 +18,6 @@ namespace Pathfinding
 		virtual ~AStar() = default;
 
 		std::shared_ptr<std::list<std::shared_ptr<Node>>> FindPath() override;
-		void SetTopology(std::shared_ptr<Topology> topology) { _topology = std::move(topology); }
 
 	private:
 		std::unique_ptr<Node> _currentPoint;
