@@ -10,9 +10,6 @@ namespace Pathfinding
 		AStar() = default;
 		virtual ~AStar() = default;
 
-		std::shared_ptr<std::list<std::shared_ptr<Node>>> FindPathes() override
-		{
-			return nullptr;
-		}
+		std::shared_ptr<std::list<std::shared_ptr<Node>>> FindPathes() override;
 	};
 }

@@ -1,4 +1,5 @@
 #include "gmock/gmock.h"
+#include "AStar.h"
 
 namespace Pathfinding
 {
@@ -8,8 +9,10 @@ namespace Pathfinding
 		AStarTestFixture() = default;
 	};
 
-	TEST_F(AStarTestFixture, Test)
+	TEST_F(AStarTestFixture, ShouldFindEmptyPathWithNoTopology)
 	{
-		ASSERT_TRUE(true);
+		auto astar = AStar();
+		auto pathes = astar.FindPathes();
+		ASSERT_EQ(0, pathes->size());
 	}
 }
