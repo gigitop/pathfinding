@@ -10,14 +10,17 @@ namespace Pathfinding
 	class AStar : public IAlgorithm
 	{
 	public:
-		AStar() = default;
+		AStar(std::shared_ptr<Topology> topology, std::shared_ptr<Node> start, std::shared_ptr<Node> end)
+			: IAlgorithm(topology, start, end)
+		{
+		}
+		
 		virtual ~AStar() = default;
 
 		std::shared_ptr<std::list<std::shared_ptr<Node>>> FindPath() override;
 		void SetTopology(std::shared_ptr<Topology> topology) { _topology = std::move(topology); }
 
 	private:
-		std::shared_ptr<Topology> _topology;
 		std::unique_ptr<Node> _currentPoint;
 	};
 }
