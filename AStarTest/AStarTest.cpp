@@ -14,9 +14,22 @@ namespace Pathfinding
 
 	TEST_F(AStarTestFixture, ShouldThrowInvalidArgumentException)
 	{
-		//TOOD: More test needed.
-		ASSERT_THROW(AStar(nullptr, Node(0, 0), Node(1, 0)), std::invalid_argument);
-		ASSERT_THROW(AStar(std::make_shared<Topology>(), Node(0, 0), Node(1, 0)), std::invalid_argument);
+		Node start(0, 0);
+		Node end(1, 0);
+
+		ASSERT_THROW(AStar(nullptr, start, end), std::invalid_argument);
+
+		auto topology = std::make_shared<Topology>();
+		ASSERT_THROW(AStar(topology, start, end), std::invalid_argument);
+		
+		topology->AddNodeToTopology(start);
+		ASSERT_THROW(AStar(topology, start, end), std::invalid_argument);
+
+		topology->AddNodeToTopology(end);
+		ASSERT_NO_THROW(AStar(topology, start, end));
+
+		topology->RemoveNodeFromTopology(end);
+		ASSERT_THROW(AStar(topology, start, end), std::invalid_argument);
 	}
 
 	TEST_F(AStarTestFixture, ShouldFindSimplePath)
