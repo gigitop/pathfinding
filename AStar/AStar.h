@@ -29,7 +29,7 @@ namespace Pathfinding
 	private:
 		bool Search(const Node& currentNode);
 		std::shared_ptr<std::list<Node>> GetUntestedAdjacentAStarNodes(const Node& fromNode);
-		std::shared_ptr<std::list<Node>> GetAdjacentNodes(const Node& fromNode);
+		std::shared_ptr<std::list<Node>> GetAdjacentNodes(const Node& fromNode) const;
 
 		std::unordered_map<Node, std::shared_ptr<AStarNode>> _nodeMap;
 	};

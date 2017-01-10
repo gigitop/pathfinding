@@ -1,4 +1,5 @@
 #include "AStar.h"
+#include "PathNotFindException.h"
 
 using namespace Pathfinding;
 
@@ -45,7 +46,7 @@ bool AStar::Search(const Node& currentNode)
 		}
 	}
 
-	return false;
+	throw PathNotFindException();
 }
 
 std::shared_ptr<std::list<Node>> AStar::GetUntestedAdjacentAStarNodes(const Node& fromNode)
@@ -81,7 +82,7 @@ std::shared_ptr<std::list<Node>> AStar::GetUntestedAdjacentAStarNodes(const Node
 	return untestedNodes;
 }
 
-std::shared_ptr<std::list<Node>> AStar::GetAdjacentNodes(const Node& fromNode)
+std::shared_ptr<std::list<Node>> AStar::GetAdjacentNodes(const Node& fromNode) const
 {
 	auto adjacentNodes = std::make_shared<std::list<Node>>();
 

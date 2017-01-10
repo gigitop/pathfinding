@@ -2,6 +2,7 @@
 #include "AStar.h"
 #include "Topology.h"
 #include "Node.h"
+#include "PathNotFindException.h"
 
 namespace Pathfinding
 {
@@ -49,7 +50,6 @@ namespace Pathfinding
 		ASSERT_EQ(4, path->size());
 	}
 
-
 	TEST_F(AStarTestFixture, ShouldFindPathWithWall)
 	{
 		auto start = Node(0, 0);
@@ -69,5 +69,26 @@ namespace Pathfinding
 		AStar astar(topology, start, end);
 		auto path = astar.FindPath();
 		ASSERT_EQ(5, path->size());
+	}
+
+	TEST_F(AStarTestFixture, ShouldNotFindPath)
+	{
+		auto start = Node(0, 0);
+		auto end = Node(2, 0);
+		auto topology = std::make_shared<Topology>();
+		for (int x = 0; x <= 2; x++)
+		{
+			for (int y = 0; y <= 2; y++)
+			{
+				topology->AddNodeToTopology(Node(x, y));
+			}
+		}
+
+		topology->RemoveNodeFromTopology(Node(1, 0));
+		topology->RemoveNodeFromTopology(Node(1, 1));
+		topology->RemoveNodeFromTopology(Node(1, 2));
+
+		AStar astar(topology, start, end);
+		ASSERT_THROW(astar.FindPath(), PathNotFindException);
 	}
 }
