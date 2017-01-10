@@ -10,6 +10,9 @@
     <ClInclude Include="AStar.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="AStarNode.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AStar.cpp">

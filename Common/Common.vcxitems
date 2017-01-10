@@ -14,9 +14,9 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Node.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PathNotFindException.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IAlgorithm.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Point.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Topology.h" />
   </ItemGroup>
 </Project>

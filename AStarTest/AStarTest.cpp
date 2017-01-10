@@ -14,15 +14,14 @@ namespace Pathfinding
 	TEST_F(AStarTestFixture, ShouldThrowInvalidArgumentException)
 	{
 		//TOOD: More test needed.
-		ASSERT_THROW(AStar(nullptr, nullptr, nullptr), std::invalid_argument);
-		ASSERT_THROW(AStar(std::make_shared<Topology>(), std::make_shared<Node>(0, 0), std::make_shared<Node>(1, 0)), std::invalid_argument);
-		ASSERT_THROW(AStar(std::make_shared<Topology>(), nullptr, nullptr), std::invalid_argument);
+		ASSERT_THROW(AStar(nullptr, Node(0, 0), Node(1, 0)), std::invalid_argument);
+		ASSERT_THROW(AStar(std::make_shared<Topology>(), Node(0, 0), Node(1, 0)), std::invalid_argument);
 	}
 
 	TEST_F(AStarTestFixture, ShouldFindSimplePath)
 	{
-		auto start = std::make_shared<Node>(0, 0);
-		auto end = std::make_shared<Node>(1, 0);
+		Node start(0, 0);
+		Node end(1, 0);
 		auto topology = std::make_shared<Topology>();
 		topology->AddNodeToTopology(start);
 		topology->AddNodeToTopology(end);
@@ -34,19 +33,19 @@ namespace Pathfinding
 
 	TEST_F(AStarTestFixture, ShouldFindBasicPath)
 	{
-		auto start = std::make_shared<Node>(1, 1);
-		auto end = std::make_shared<Node>(4, 1);
+		auto start = Node(1, 1);
+		auto end = Node(4, 1);
 		auto topology = std::make_shared<Topology>();
-		for (int x = 0; x < 4; x++)
+		for (int x = 0; x <= 5; x++)
 		{
-			for (int y = 0; y < 4; y++)
+			for (int y = 0; y <= 5; y++)
 			{
-				topology->AddNodeToTopology(std::make_shared<Node>(x, y));
+				topology->AddNodeToTopology(Node(x, y));
 			}
 		}
 
 		AStar astar(topology, start, end);
 		auto path = astar.FindPath();
-		ASSERT_EQ(2, path->size());
+		ASSERT_EQ(4, path->size());
 	}
 }

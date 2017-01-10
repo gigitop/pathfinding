@@ -2,6 +2,8 @@
 
 #include "IAlgorithm.h"
 #include "Node.h"
+#include <unordered_map>
+#include "AStarNode.h"
 
 namespace Pathfinding
 {
@@ -10,9 +12,14 @@ namespace Pathfinding
 	class AStar : public IAlgorithm
 	{
 	public:
-		AStar(std::shared_ptr<Topology> topology, std::shared_ptr<Node> start, std::shared_ptr<Node> end)
+		AStar(std::shared_ptr<Topology> topology, const Node& start, const Node& end)
 			: IAlgorithm(topology, start, end)
 		{
+			for (auto& node : topology->Get())
+			{
+				_nodeMap[node] = std::make_shared<AStarNode>(node, end);
+			}
+			_nodeMap[start]->SetState(AStarNodeState::Open);
 		}
 		
 		virtual ~AStar() = default;
@@ -20,6 +27,10 @@ namespace Pathfinding
 		std::shared_ptr<std::list<std::shared_ptr<Node>>> FindPath() override;
 
 	private:
-		std::unique_ptr<Node> _currentPoint;
+		bool Search(const Node& currentNode);
+		std::shared_ptr<std::list<Node>> GetUntestedAdjacentAStarNodes(const Node& fromNode);
+		std::shared_ptr<std::list<Node>> GetAdjacentNodes(const Node& fromNode);
+
+		std::unordered_map<Node, std::shared_ptr<AStarNode>> _nodeMap;
 	};
 }

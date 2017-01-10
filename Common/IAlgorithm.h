@@ -10,7 +10,7 @@ namespace Pathfinding
 	class IAlgorithm
 	{
 	public:
-		IAlgorithm(std::shared_ptr<Topology> topology, std::shared_ptr<Node> start, std::shared_ptr<Node> end)
+		IAlgorithm(std::shared_ptr<Topology> topology, const Node& start, const Node& end)
 			: _topology(topology)
 			, _start(start)
 			, _end(end)
@@ -35,7 +35,7 @@ namespace Pathfinding
 
 	protected:
 		std::shared_ptr<Topology> _topology;
-		std::shared_ptr<Node> _start;
-		std::shared_ptr<Node> _end;
+		Node _start;
+		Node _end;
 	};
 }
