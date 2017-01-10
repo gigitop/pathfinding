@@ -72,7 +72,6 @@ std::shared_ptr<std::list<Node>> AStar::GetUntestedAdjacentAStarNodes(const Node
 		}
 		else
 		{
-			// If it's untested, set the parent and flag it as 'Open' for consideration
 			astarNode->SetParent(_nodeMap[fromNode]);
 			astarNode->SetState(AStarNodeState::Open);
 			untestedNodes->emplace_back(node);

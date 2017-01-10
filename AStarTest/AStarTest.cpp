@@ -6,13 +6,7 @@
 
 namespace Pathfinding
 {
-	class AStarTestFixture : public testing::Test
-	{
-	public:
-		AStarTestFixture() = default;
-	};
-
-	TEST_F(AStarTestFixture, ShouldThrowInvalidArgumentException)
+	TEST(AStarTest, ShouldThrowInvalidArgumentException)
 	{
 		Node start(0, 0);
 		Node end(1, 0);
@@ -32,7 +26,7 @@ namespace Pathfinding
 		ASSERT_THROW(AStar(topology, start, end), std::invalid_argument);
 	}
 
-	TEST_F(AStarTestFixture, ShouldFindSimplePath)
+	TEST(AStarTest, ShouldFindSimplePath)
 	{
 		Node start(0, 0);
 		Node end(1, 0);
@@ -45,7 +39,7 @@ namespace Pathfinding
 		ASSERT_EQ(2, path->size());
 	}
 
-	TEST_F(AStarTestFixture, ShouldFindBasicPath)
+	TEST(AStarTest, ShouldFindBasicPath)
 	{
 		auto start = Node(1, 1);
 		auto end = Node(4, 1);
@@ -63,7 +57,7 @@ namespace Pathfinding
 		ASSERT_EQ(4, path->size());
 	}
 
-	TEST_F(AStarTestFixture, ShouldFindPathWithWall)
+	TEST(AStarTest, ShouldFindPathWithWall)
 	{
 		auto start = Node(0, 0);
 		auto end = Node(2, 0);
@@ -84,7 +78,7 @@ namespace Pathfinding
 		ASSERT_EQ(5, path->size());
 	}
 
-	TEST_F(AStarTestFixture, ShouldNotFindPath)
+	TEST(AStarTest, ShouldNotFindPath)
 	{
 		auto start = Node(0, 0);
 		auto end = Node(2, 0);
